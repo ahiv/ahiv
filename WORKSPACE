@@ -1,5 +1,6 @@
 # Tooling for downloading from http and git
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
 # Tooling for maven artifacts
 RULES_JVM_EXTERNAL_TAG = "2.8"
@@ -28,12 +29,12 @@ http_archive(
 )
 
 # ===== zookeeper c client
-http_archive(
+new_git_repository(
     name = "org_apache_zookeeper",
-    urls = ["http://archive.apache.org/dist/zookeeper/zookeeper-3.5.5/apache-zookeeper-3.5.5.tar.gz"],
-    strip_prefix = "apache-zookeeper-3.5.5",
+    remote = "https://github.com/apache/zookeeper.git",
+    commit = "874aaf136ccda2759cc61f4c48ff9d15f6433e07",
     build_file = "@//bazel/third_party/zookeeper:BUILD",
-    sha256 = "60d527254b3816c75a1c46517768b873af5767dfcc2083d6c527b567461c546c",
+    shallow_since = "1570109970 +0200"
 )
 
 # === libuv
