@@ -27,7 +27,6 @@ genrule(
         "mkdir -p $$TMP_DIR",
         "cp -R $$(pwd)/external/org_apache_zookeeper/* $$TMP_DIR",
         "cd $$TMP_DIR/zookeeper-client/zookeeper-client-c",
-        "find / -name \"cppunit*\"",
         "autoreconf -if",
         "./configure --prefix=$$INSTALL_DIR --disable-shared --without-cppunit",
         "make install",
