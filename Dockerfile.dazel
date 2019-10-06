@@ -1,0 +1,17 @@
+FROM debian:10-slim
+MAINTAINER Fabian Faßbender fabian.fassbender42@googlemail.com
+
+ENV BAZEL_VERSION 0.29.1
+
+# Creating the man pages directory to deal with the slim variants not having it.
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl gnupg \
+ && echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" > \
+         /etc/apt/sources.list.d/bazel.list \
+ && curl https://bazel.build/bazel-release.pub.gpg | apt-key add - \
+ && apt-get update && apt-get install -y --no-install-recommends bazel=${BAZEL_VERSION} build-essential autoconf automake libtool
+
+RUN mkdir /tmp/cppunit/ && curl -L http://dev-www.libreoffice.org/src/cppunit-1.13.2.tar.gz -o /tmp/cppunit/cppunit.tar.gz \
+ && cd /tmp/cppunit/ && tar -xvf cppunit.tar.gz && cd cppunit-1.13.2 && ./configure && make && make install \
+ && apt-get purge --auto-remove -y curl gnupg \
+ && rm -rf /etc/apt/sources.list.d/bazel.list \
+ && rm -rf /var/lib/apt/lists/*

@@ -1,0 +1,5 @@
+build --cxxopt='-std=c++17'
+build --genrule_strategy=standalone
+build --host_force_python=PY2
+build --ignore_unsupported_sandboxing
+build --spawn_strategy=standalone
