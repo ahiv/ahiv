@@ -1,0 +1,3 @@
+steps:
+  - label: Build AHIV depedency tester
+    command: 'dazel build //base-cpp:dep-test'
