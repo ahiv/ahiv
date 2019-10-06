@@ -36,10 +36,6 @@ http_archive(
     sha256 = "60d527254b3816c75a1c46517768b873af5767dfcc2083d6c527b567461c546c",
 )
 
-# ===== zookeeper jute compiler
-load("//bazel/jute-compiler:compiler.bzl", "jute_repositories")
-jute_repositories()
-
 # === libuv
 http_archive(
     name = "com_github_libuv_libuv",
