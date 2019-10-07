@@ -8,7 +8,7 @@ package ahiv.config;
 import "ahiv/config/property.proto";
 
 // Config provides an interface for reading and updating the clusters config.
-service Config {
+service ConfigService {
   // List lists all properties with the same requests 'parent_name'.
   // Property names consist of a list of identifiers, separated by a dot.
   // The last element of that list is the properties actual id, while all
