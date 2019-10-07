@@ -1,5 +1,5 @@
-#ifndef AHIV_COMMONS_SMART_POINTER_H_
-#define AHIV_COMMONS_SMART_POINTER_H_
+#ifndef AHIV_COMMON_SMART_POINTER_H_
+#define AHIV_COMMON_SMART_POINTER_H_
 
 #include <memory>
 
@@ -16,4 +16,4 @@ using Weak = std::weak_ptr<T>;
 
 } // namespace ahiv
 
-#endif  // AHIV_COMMONS_SMART_POINTER_H_
+#endif  // AHIV_COMMON_SMART_POINTER_H_
