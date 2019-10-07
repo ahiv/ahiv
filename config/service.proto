@@ -1,0 +1,69 @@
+// Copyright 2019 Ahiv Authors. All rights reserved. Use of this source  code
+// is governed by a MIT-style license that can be found in the LICENSE file.
+
+syntax = "proto3";
+
+package ahiv.config;
+
+import "ahiv/config/property.proto";
+
+// Config provides an interface for reading and updating the clusters config.
+service Config {
+  // List lists all properties with the same requests 'parent_name'.
+  // Property names consist of a list of identifiers, separated by a dot.
+  // The last element of that list is the properties actual id, while all
+  // previous identifiers build the parent names. A property named 'a.b.c'
+  // has the id 'c' and the parents 'a' and 'a.b'. Thus it would be listed
+  // when listing both children of 'a' and 'a.b'.
+  rpc List(PropertyListRequest) returns (PropertyListResponse);
+  // Read reads the value of a property. If 'allow_caching' is enabled, the
+  // service may return a cached value. Read should only be used when reading
+  // a single property, when reading multiple properties use ReadSet.
+  rpc Read(PropertyReadRequest) returns (PropertyReadResponse);
+  // Update updates the value of a property. It should only be used when
+  // updating a single property, use UpdateSet to update multiple in one call.
+  rpc Update(PropertyUpdateRequest) returns (PropertyUpdateResponse);
+  // ReadSet reads a set of properties. If 'allow_caching' is enabled,
+  // the service may return cached values.
+  rpc ReadSet(PropertyReadSetRequest) returns (PropertyReadSetResponse);
+  // UpdateSet updates a set of properties.
+  rpc UpdateSet(PropertyUpdateSetRequest) returns (PropertyUpdateSetResponse);
+}
+
+message PropertyReadRequest {
+  string name = 1;
+  bool allow_caching = 2;
+}
+
+message PropertyReadResponse {
+  Property property = 1;
+}
+
+message PropertyReadSetRequest {
+  string names = 1;
+  bool allow_caching = 2;
+}
+
+message PropertyReadSetResponse {
+  Property properties = 1;
+}
+
+message PropertyListRequest {
+  string parent_name = 1;
+}
+
+message PropertyListResponse {
+  repeated Property properties = 1;
+}
+
+message PropertyUpdateRequest {
+  Property property = 1;
+}
+
+message PropertyUpdateResponse {}
+
+message PropertyUpdateSetRequest {
+  Property properties = 1;
+}
+
+message PropertyUpdateSetResponse {}
