@@ -16,5 +16,5 @@ The property value for `ahiv.edge.cientLimit` is stored in ZooKeeper under `conf
 
 ### Update Events
 
-The microservices watches for update in `config/` and publishes them to a 
+The microservice watches for update in `config/` and publishes them to a 
 designated kafka topic id: `ahiv.cluster.events.config`.
