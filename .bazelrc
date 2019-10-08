@@ -3,3 +3,4 @@ build --genrule_strategy=standalone
 build --host_force_python=PY2
 build --ignore_unsupported_sandboxing
 build --spawn_strategy=standalone
+build --incompatible_disable_deprecated_attr_params=false
